@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Programmer Calculator</string>
+    <string name="number_system_calculator">Number System Convertor</string>
+    <string name="decimal">Dec</string>
+    <string name="octal">Oct</string>
+    <string name="binary">Bin</string>
+    <string name="hexa">Hex</string>
+    <string name="decimal_number">Type decimal number</string>
+    <string name="hexa_number">Type hexa number</string>
+    <string name="binary_number">Type binary number</string>
+    <string name="octa_number">Type octal number</string>
+    <string name="convert">Convert</string>
+    <string name="clear">Clear</string>
+    <string name="binary_result">Binary : </string>
+    <string name="octa_result">Octa : </string>
+    <string name="hexa_result">Hexa : </string>
+    <string name="dec_result">Dec : </string>
 </resources>
