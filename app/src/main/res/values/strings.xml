@@ -6,7 +6,7 @@
     <string name="binary">Bin</string>
     <string name="hexa">Hex</string>
     <string name="decimal_number">Type decimal number</string>
-    <string name="hexa_number">Type hexa-decimal number</string>
+    <string name="hexa_number">Type hexa number</string>
     <string name="binary_number">Type binary number</string>
     <string name="octa_number">Type octal number</string>
     <string name="convert">Convert</string>

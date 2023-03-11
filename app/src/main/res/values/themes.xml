@@ -59,7 +59,6 @@
     </style>
 
     <style name="EditText.Decimal" parent="ProgrammerCalculator.EditText">
-        <item name="android:inputType">numberDecimal</item>
         <item name="android:digits">"0123456789.</item>
         <item name="android:hint">@string/decimal_number</item>
     </style>

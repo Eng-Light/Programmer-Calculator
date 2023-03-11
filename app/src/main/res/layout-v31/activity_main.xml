@@ -1,184 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/spacing_normal"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/chip_group"
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nourelden515.programmercalculator.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@drawable/radius_8"
-        android:clipToOutline="true"
-        android:orientation="horizontal"
-        android:weightSum="8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/spacing_normal">
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/ProgrammerCalculator.ButtonChoice"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="@string/decimal" />
-
-        <com.google.android.material.button.MaterialButton
-            style="@style/ProgrammerCalculator.ButtonChoice"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="@string/binary" />
-
-        <com.google.android.material.button.MaterialButton
-            style="@style/ProgrammerCalculator.ButtonChoice"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="@string/octal" />
-
-        <com.google.android.material.button.MaterialButton
-            style="@style/ProgrammerCalculator.ButtonChoice"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:text="@string/hexa" />
-
-    </LinearLayout>
-
-    <EditText
-        android:id="@+id/edit_text_Input"
-        style="@style/EditText.Decimal"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:autofillHints="todo"
-        app:layout_constraintTop_toBottomOf="@id/chip_group"
-        tools:layout_editor_absoluteX="@dimen/spacing_normal" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_convert"
-        style="@style/ProgrammerCalculator.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableEnd="@drawable/convert_regular"
-        android:text="@string/convert"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@id/edit_text_Input"
-        app:layout_constraintTop_toBottomOf="@id/edit_text_Input" />
-
-    <LinearLayout
-        android:id="@+id/layout_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/spacing_normal"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/layout_result_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_convert">
-
-        <TextView
-            android:id="@+id/tv_binary"
-            style="@style/ProgrammerCalculator.TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_large"
-            android:text="@string/binary_result"
-            app:layout_constraintBottom_toTopOf="@+id/tv_decimal"
+        <LinearLayout
+            android:id="@+id/chip_group"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/radius_8"
+            android:clipToOutline="true"
+            android:orientation="horizontal"
+            android:weightSum="8"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tv_decimal"
-            style="@style/ProgrammerCalculator.TextView"
+            <ToggleButton
+                android:id="@+id/btn_dec"
+                style="@style/ProgrammerCalculator.ButtonChoice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:onClick="onClickView"
+                android:textOff="@string/decimal"
+                android:textOn="@string/decimal" />
+
+            <ToggleButton
+                android:id="@+id/btn_bin"
+                style="@style/ProgrammerCalculator.ButtonChoice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:onClick="onClickView"
+                android:textOff="@string/binary"
+                android:textOn="@string/binary" />
+
+            <ToggleButton
+                android:id="@+id/btn_oct"
+                style="@style/ProgrammerCalculator.ButtonChoice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:onClick="onClickView"
+                android:textOff="@string/octal"
+                android:textOn="@string/octal" />
+
+            <ToggleButton
+                android:id="@+id/btn_hex"
+                style="@style/ProgrammerCalculator.ButtonChoice"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:onClick="onClickView"
+                android:textOff="@string/hexa"
+                android:textOn="@string/hexa" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edit_text_Input"
+            style="@style/EditText.Decimal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:autofillHints="todo"
+            android:text="@={viewModel.inputLiveData}"
+            app:layout_constraintTop_toBottomOf="@id/chip_group"
+            tools:layout_editor_absoluteX="@dimen/spacing_normal" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_convert"
+            style="@style/ProgrammerCalculator.Button"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_large"
-            android:text="@string/octa_result"
-            app:layout_constraintBottom_toTopOf="@+id/tv_octal"
-            app:layout_constraintStart_toStartOf="@+id/tv_binary"
-            app:layout_constraintTop_toBottomOf="@+id/tv_binary" />
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/convert_regular"
+            android:text="@string/convert"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="@id/edit_text_Input"
+            app:layout_constraintTop_toBottomOf="@id/edit_text_Input" />
 
-        <TextView
-            android:id="@+id/tv_octal"
-            style="@style/ProgrammerCalculator.TextView"
+        <LinearLayout
+            android:id="@+id/layout_result"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_large"
-            android:text="@string/hexa_result"
-            app:layout_constraintBottom_toTopOf="@+id/tv_hexa"
-            app:layout_constraintStart_toStartOf="@+id/tv_binary"
-            app:layout_constraintTop_toBottomOf="@+id/tv_decimal" />
-
-        <TextView
-            android:id="@+id/tv_hexa"
-            style="@style/ProgrammerCalculator.TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_large"
-            android:text="@string/dec_result"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_binary"
-            app:layout_constraintTop_toBottomOf="@+id/tv_octal" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_result_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/spacing_small"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/layout_result"
-        app:layout_constraintTop_toTopOf="@id/layout_result"
-        tools:layout_editor_absoluteY="@dimen/spacing_normal">
-
-        <TextView
-            android:id="@+id/tv_binary_text"
-            style="@style/ProgrammerCalculator.TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_large"
-            app:layout_constraintBottom_toTopOf="@+id/tv_decimal"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/spacing_normal"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/layout_result_text"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/button_convert">
 
-        <TextView
-            android:id="@+id/tv_decimal_text"
-            style="@style/ProgrammerCalculator.TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_large"
-            app:layout_constraintBottom_toTopOf="@+id/tv_octal"
-            app:layout_constraintStart_toStartOf="@+id/tv_binary"
-            app:layout_constraintTop_toBottomOf="@+id/tv_binary" />
+            <TextView
+                android:id="@+id/tv_decimal"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@string/dec_result" />
 
-        <TextView
-            android:id="@+id/tv_octal_text"
-            style="@style/ProgrammerCalculator.TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_large"
-            app:layout_constraintBottom_toTopOf="@+id/tv_hexa"
-            app:layout_constraintStart_toStartOf="@+id/tv_binary"
-            app:layout_constraintTop_toBottomOf="@+id/tv_decimal" />
+            <TextView
+                android:id="@+id/tv_binary"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@string/binary_result" />
 
-        <TextView
-            android:id="@+id/tv_hexa_text"
-            style="@style/ProgrammerCalculator.TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/height_large"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_binary"
-            app:layout_constraintTop_toBottomOf="@+id/tv_octal" />
+            <TextView
+                android:id="@+id/tv_octal"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@string/octa_result" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tv_hexa"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@string/hexa_result" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_clear"
-        style="@style/ProgrammerCalculator.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/clear"
-        app:layout_constraintEnd_toEndOf="@id/edit_text_Input"
-        app:layout_constraintStart_toStartOf="@id/edit_text_Input"
-        app:layout_constraintTop_toBottomOf="@id/layout_result" />
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/layout_result_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/layout_result"
+            app:layout_constraintTop_toTopOf="@id/layout_result"
+            tools:layout_editor_absoluteY="@dimen/spacing_normal">
+
+            <TextView
+                android:id="@+id/tv_decimal_text"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@{viewModel.decimalOutputLiveData}" />
+
+            <TextView
+                android:id="@+id/tv_binary_text"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@{viewModel.binaryOutputLiveData}" />
+
+            <TextView
+                android:id="@+id/tv_octal_text"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@{viewModel.octalOutputLiveData}" />
+
+            <TextView
+                android:id="@+id/tv_hexa_text"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@{viewModel.hexaOutputLiveData}" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_clear"
+            style="@style/ProgrammerCalculator.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/clear"
+            app:layout_constraintEnd_toEndOf="@id/edit_text_Input"
+            app:layout_constraintStart_toStartOf="@id/edit_text_Input"
+            app:layout_constraintTop_toBottomOf="@id/layout_result" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
