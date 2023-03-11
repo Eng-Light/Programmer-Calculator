@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.nourelden515.programmercalculator.MainViewModel" />
@@ -12,8 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/spacing_normal"
-        tools:context=".MainActivity">
+        android:padding="@dimen/spacing_normal">
 
         <LinearLayout
             android:id="@+id/chip_group"
@@ -26,33 +27,45 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.button.MaterialButton
+            <ToggleButton
+                android:id="@+id/btn_dec"
                 style="@style/ProgrammerCalculator.ButtonChoice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="@string/decimal" />
+                android:onClick="onClickView"
+                android:textOff="@string/decimal"
+                android:textOn="@string/decimal" />
 
-            <com.google.android.material.button.MaterialButton
+            <ToggleButton
+                android:id="@+id/btn_bin"
                 style="@style/ProgrammerCalculator.ButtonChoice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="@string/binary" />
+                android:onClick="onClickView"
+                android:textOff="@string/binary"
+                android:textOn="@string/binary" />
 
-            <com.google.android.material.button.MaterialButton
+            <ToggleButton
+                android:id="@+id/btn_oct"
                 style="@style/ProgrammerCalculator.ButtonChoice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="@string/octal" />
+                android:onClick="onClickView"
+                android:textOff="@string/octal"
+                android:textOn="@string/octal" />
 
-            <com.google.android.material.button.MaterialButton
+            <ToggleButton
+                android:id="@+id/btn_hex"
                 style="@style/ProgrammerCalculator.ButtonChoice"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:text="@string/hexa" />
+                android:onClick="onClickView"
+                android:textOff="@string/hexa"
+                android:textOn="@string/hexa" />
 
         </LinearLayout>
 
@@ -63,6 +76,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="@dimen/spacing_normal"
             android:autofillHints="todo"
+            android:text="@={viewModel.inputLiveData}"
             app:layout_constraintTop_toBottomOf="@id/chip_group"
             tools:layout_editor_absoluteX="@dimen/spacing_normal" />
 
@@ -88,44 +102,32 @@
             app:layout_constraintTop_toBottomOf="@id/button_convert">
 
             <TextView
-                android:id="@+id/tv_binary"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                android:text="@string/binary_result"
-                app:layout_constraintBottom_toTopOf="@+id/tv_decimal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/tv_decimal"
                 style="@style/ProgrammerCalculator.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_large"
-                android:text="@string/octa_result"
-                app:layout_constraintBottom_toTopOf="@+id/tv_octal"
-                app:layout_constraintStart_toStartOf="@+id/tv_binary"
-                app:layout_constraintTop_toBottomOf="@+id/tv_binary" />
+                android:text="@string/dec_result" />
+
+            <TextView
+                android:id="@+id/tv_binary"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@string/binary_result" />
 
             <TextView
                 android:id="@+id/tv_octal"
                 style="@style/ProgrammerCalculator.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_large"
-                android:text="@string/hexa_result"
-                app:layout_constraintBottom_toTopOf="@+id/tv_hexa"
-                app:layout_constraintStart_toStartOf="@+id/tv_binary"
-                app:layout_constraintTop_toBottomOf="@+id/tv_decimal" />
+                android:text="@string/octa_result" />
 
             <TextView
                 android:id="@+id/tv_hexa"
                 style="@style/ProgrammerCalculator.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_large"
-                android:text="@string/dec_result"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_binary"
-                app:layout_constraintTop_toBottomOf="@+id/tv_octal" />
+                android:text="@string/hexa_result" />
 
         </LinearLayout>
 
@@ -141,40 +143,32 @@
             tools:layout_editor_absoluteY="@dimen/spacing_normal">
 
             <TextView
-                android:id="@+id/tv_binary_text"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                app:layout_constraintBottom_toTopOf="@+id/tv_decimal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/tv_decimal_text"
                 style="@style/ProgrammerCalculator.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_large"
-                app:layout_constraintBottom_toTopOf="@+id/tv_octal"
-                app:layout_constraintStart_toStartOf="@+id/tv_binary"
-                app:layout_constraintTop_toBottomOf="@+id/tv_binary" />
+                android:text="@{viewModel.decimalOutputLiveData}" />
+
+            <TextView
+                android:id="@+id/tv_binary_text"
+                style="@style/ProgrammerCalculator.TextView"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/height_large"
+                android:text="@{viewModel.binaryOutputLiveData}" />
 
             <TextView
                 android:id="@+id/tv_octal_text"
                 style="@style/ProgrammerCalculator.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_large"
-                app:layout_constraintBottom_toTopOf="@+id/tv_hexa"
-                app:layout_constraintStart_toStartOf="@+id/tv_binary"
-                app:layout_constraintTop_toBottomOf="@+id/tv_decimal" />
+                android:text="@{viewModel.octalOutputLiveData}" />
 
             <TextView
                 android:id="@+id/tv_hexa_text"
                 style="@style/ProgrammerCalculator.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/height_large"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/tv_binary"
-                app:layout_constraintTop_toBottomOf="@+id/tv_octal" />
+                android:text="@{viewModel.hexaOutputLiveData}" />
 
         </LinearLayout>
 
