@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.ProgrammerCalculator" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.ProgrammerCalculator" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
@@ -21,12 +21,17 @@
     <style name="ProgrammerCalculator.Button" parent="ShapeAppearanceOverlay.Material3.Button">
         <item name="fontFamily">@font/mulish_medium</item>
         <item name="android:paddingVertical">@dimen/spacing_small</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
         <item name="android:layout_marginTop">@dimen/spacing_normal</item>
         <item name="android:textSize">20sp</item>
     </style>
 
     <style name="ProgrammerCalculator.TextView" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">24sp</item>
+        <item name="android:textIsSelectable">true</item>
+        <item name="android:paddingVertical">@dimen/spacing_vsmall</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginVertical">@dimen/spacing_vsmall</item>
         <item name="fontFamily">@font/mulish_regular</item>
         <item name="android:textColor">@color/colorTextSubTitle</item>
     </style>
@@ -38,8 +43,7 @@
         <item name="android:textColorHint">@color/colorTextNormal</item>
         <item name="fontFamily">@font/mulish_regular</item>
         <item name="android:textColor">@color/colorTextTitle</item>
-        <item name="android:background">@drawable/radius_8</item>
-        <item name="android:backgroundTint">@color/colorTextViewBackground</item>
+        <item name="android:background">@drawable/radius_with_colored_stroke</item>
     </style>
 
     <style name="EditText.Binary" parent="ProgrammerCalculator.EditText">
