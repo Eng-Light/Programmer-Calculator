@@ -73,7 +73,7 @@
             android:id="@+id/edit_text_Input"
             style="@style/EditText.Decimal"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_marginTop="@dimen/spacing_normal"
             android:autofillHints="todo"
             android:text="@={viewModel.inputLiveData}"
@@ -92,83 +92,112 @@
             app:layout_constraintTop_toBottomOf="@id/edit_text_Input" />
 
         <LinearLayout
-            android:id="@+id/layout_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/spacing_normal"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/layout_result_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_convert">
-
-            <TextView
-                android:id="@+id/tv_decimal"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                android:text="@string/dec_result" />
-
-            <TextView
-                android:id="@+id/tv_binary"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                android:text="@string/binary_result" />
-
-            <TextView
-                android:id="@+id/tv_octal"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                android:text="@string/octa_result" />
-
-            <TextView
-                android:id="@+id/tv_hexa"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                android:text="@string/hexa_result" />
-
-        </LinearLayout>
-
-        <LinearLayout
             android:id="@+id/layout_result_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/spacing_small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/layout_result"
-            app:layout_constraintTop_toTopOf="@id/layout_result"
+            app:layout_constraintEnd_toEndOf="@id/edit_text_Input"
+            app:layout_constraintStart_toStartOf="@id/edit_text_Input"
+            app:layout_constraintTop_toBottomOf="@id/button_convert"
             tools:layout_editor_absoluteY="@dimen/spacing_normal">
 
-            <TextView
-                android:id="@+id/tv_decimal_text"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                android:text="@{viewModel.decimalOutputLiveData}" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_binary_text"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                android:text="@{viewModel.binaryOutputLiveData}" />
+                <TextView
+                    android:id="@+id/tv_decimal"
+                    style="@style/ProgrammerCalculator.TextView"
+                    android:layout_width="90dp"
+                    android:layout_height="@dimen/height_large"
+                    android:text="@string/dec_result" />
 
-            <TextView
-                android:id="@+id/tv_octal_text"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                android:text="@{viewModel.octalOutputLiveData}" />
+                <TextView
+                    android:id="@+id/tv_decimal_text"
+                    style="@style/ProgrammerCalculator.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.decimalOutputLiveData}" />
 
-            <TextView
-                android:id="@+id/tv_hexa_text"
-                style="@style/ProgrammerCalculator.TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/height_large"
-                android:text="@{viewModel.hexaOutputLiveData}" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/decimal_dividor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerColor="@color/colorPrimaryVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_binary"
+                    style="@style/ProgrammerCalculator.TextView"
+                    android:layout_width="90dp"
+                    android:layout_height="@dimen/height_large"
+                    android:text="@string/binary_result" />
+
+                <TextView
+                    android:id="@+id/tv_binary_text"
+                    style="@style/ProgrammerCalculator.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.binaryOutputLiveData}" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerColor="@color/colorPrimaryVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_octal"
+                    style="@style/ProgrammerCalculator.TextView"
+                    android:layout_width="90dp"
+                    android:layout_height="@dimen/height_large"
+                    android:text="@string/octa_result" />
+
+                <TextView
+                    android:id="@+id/tv_octal_text"
+                    style="@style/ProgrammerCalculator.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.octalOutputLiveData}" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/octal_dividor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                app:dividerColor="@color/colorPrimaryVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_hexa"
+                    style="@style/ProgrammerCalculator.TextView"
+                    android:layout_width="90dp"
+                    android:layout_height="@dimen/height_large"
+                    android:text="@string/hexa_result" />
+
+                <TextView
+                    android:id="@+id/tv_hexa_text"
+                    style="@style/ProgrammerCalculator.TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.hexaOutputLiveData}" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -180,7 +209,7 @@
             android:text="@string/clear"
             app:layout_constraintEnd_toEndOf="@id/edit_text_Input"
             app:layout_constraintStart_toStartOf="@id/edit_text_Input"
-            app:layout_constraintTop_toBottomOf="@id/layout_result" />
+            app:layout_constraintTop_toBottomOf="@id/layout_result_text" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

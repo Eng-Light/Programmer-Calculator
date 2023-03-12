@@ -7,5 +7,5 @@
     <color name="colorTextSubTitle">#99fefefe</color>
     <color name="colorTextNormal">#4dfefefe</color>
     <color name="colorBackground">#121212</color>
-    <color name="colorTextViewBackground">#08FEFEFE</color>
+    <color name="colorTextViewBackground">#0FFEFEFE</color>
 </resources>

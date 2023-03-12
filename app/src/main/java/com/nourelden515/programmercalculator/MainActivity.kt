@@ -1,7 +1,9 @@
 package com.nourelden515.programmercalculator
 
 import android.os.Bundle
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.text.method.DigitsKeyListener
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -27,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 
         setDefaultSystem()
         setListeners()
+        setObservers()
+        addTextWatcher()
+    }
+
+    private fun setObservers() {
         viewModel.exceptionLiveData.observe(this) {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
@@ -52,8 +59,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonClear.setOnClickListener {
-            clear()
+            clearInput()
         }
+    }
+
+    private fun addTextWatcher() {
+        binding.editTextInput.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                clear()
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // This method is called whenever the text is changed.
+                // Put your code here to be executed when the user types in the EditText.
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // This method is called after the text is changed.
+            }
+        })
     }
 
     private fun setDefaultSystem() {
@@ -98,42 +122,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetDecimalButton() {
-        binding.btnDec!!.isChecked = true
+        binding.btnDec.isChecked = true
         binding.editTextInput.hint = this.getString(R.string.decimal_number)
         binding.editTextInput.inputType = InputType.TYPE_CLASS_NUMBER
         binding.editTextInput.keyListener = DigitsKeyListener.getInstance("0123456789.")
     }
 
     private fun resetBinaryButton() {
-        binding.btnBin!!.isChecked = true
+        binding.btnBin.isChecked = true
         binding.editTextInput.hint = this.getString(R.string.binary_number)
         binding.editTextInput.inputType = InputType.TYPE_CLASS_NUMBER
         binding.editTextInput.keyListener = DigitsKeyListener.getInstance("10.")
     }
 
     private fun resetOctalButton() {
-        binding.btnOct!!.isChecked = true
+        binding.btnOct.isChecked = true
         binding.editTextInput.hint = this.getString(R.string.octa_number)
         binding.editTextInput.inputType = InputType.TYPE_CLASS_NUMBER
         binding.editTextInput.keyListener = DigitsKeyListener.getInstance("01234567.")
     }
 
     private fun resetHexaButton() {
-        binding.btnHex!!.isChecked = true
+        binding.btnHex.isChecked = true
         binding.editTextInput.hint = this.getString(R.string.hexa_number)
         binding.editTextInput.keyListener = DigitsKeyListener.getInstance("0123456789AaBbCcDdEeFf.")
         binding.editTextInput.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
     }
 
     private fun disableButtons() {
-        binding.btnBin!!.isChecked = false
-        binding.btnOct!!.isChecked = false
-        binding.btnDec!!.isChecked = false
-        binding.btnHex!!.isChecked = false
+        binding.btnBin.isChecked = false
+        binding.btnOct.isChecked = false
+        binding.btnDec.isChecked = false
+        binding.btnHex.isChecked = false
     }
 
     private fun clear() {
-        binding.editTextInput.text.clear()
         viewModel.clearAllData()
     }
 
@@ -155,6 +178,9 @@ class MainActivity : AppCompatActivity() {
         binding.tvDecimal.visibility = View.VISIBLE
         binding.tvDecimalText.visibility = View.VISIBLE
 
+        binding.octalDividor.visibility = View.VISIBLE
+        binding.decimalDividor.visibility = View.GONE
+
         binding.tvOctal.visibility = View.VISIBLE
         binding.tvOctalText.visibility = View.VISIBLE
 
@@ -168,6 +194,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.tvDecimal.visibility = View.GONE
         binding.tvDecimalText.visibility = View.GONE
+
+        binding.decimalDividor.visibility = View.GONE
+        binding.octalDividor.visibility = View.VISIBLE
 
         binding.tvOctal.visibility = View.VISIBLE
         binding.tvOctalText.visibility = View.VISIBLE
@@ -185,6 +214,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.tvOctal.visibility = View.GONE
         binding.tvOctalText.visibility = View.GONE
+        binding.octalDividor.visibility = View.GONE
+        binding.decimalDividor.visibility = View.VISIBLE
 
         binding.tvHexa.visibility = View.VISIBLE
         binding.tvHexaText.visibility = View.VISIBLE
@@ -199,6 +230,8 @@ class MainActivity : AppCompatActivity() {
 
         binding.tvOctal.visibility = View.VISIBLE
         binding.tvOctalText.visibility = View.VISIBLE
+
+        binding.decimalDividor.visibility = View.VISIBLE
 
         binding.tvHexa.visibility = View.GONE
         binding.tvHexaText.visibility = View.GONE
