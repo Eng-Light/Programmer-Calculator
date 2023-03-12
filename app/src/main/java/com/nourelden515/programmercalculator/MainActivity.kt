@@ -70,12 +70,11 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // This method is called whenever the text is changed.
-                // Put your code here to be executed when the user types in the EditText.
+                //todo
             }
 
             override fun afterTextChanged(s: Editable?) {
-                // This method is called after the text is changed.
+                // todo
             }
         })
     }
